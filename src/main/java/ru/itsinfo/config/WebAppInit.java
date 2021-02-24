@@ -1,26 +1,20 @@
 package ru.itsinfo.config;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebAppInit extends AbstractDispatcherServletInitializer {
+public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[0];
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[] {WebAppConfig.class};
+    }
+
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
-    }
-
-    @Override
-    protected WebApplicationContext createServletApplicationContext() {
-        AnnotationConfigWebApplicationContext webAppContext = new AnnotationConfigWebApplicationContext();
-        webAppContext.register(WebAppConfig.class);
-        return webAppContext;
-    }
-
-    @Override
-    protected WebApplicationContext createRootApplicationContext() {
-        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(WebAppConfig.class);
-        return rootContext;
     }
 }
