@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        System.out.println(userDAO.getAllUsers());
         return userDAO.getAllUsers();
     }
 

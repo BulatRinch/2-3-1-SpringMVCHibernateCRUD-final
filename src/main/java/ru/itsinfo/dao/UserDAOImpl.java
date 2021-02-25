@@ -39,6 +39,7 @@ public class UserDAOImpl implements UserDAO {
     public User deleteUser(long id) {
         User user = readUser(id);
         entityManager.remove(user);
+        entityManager.flush();
         return user;
     }
 }
