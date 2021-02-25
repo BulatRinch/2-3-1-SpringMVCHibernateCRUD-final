@@ -11,6 +11,6 @@
 5. Внесите изменения в конфигурацию для работы с базой данных. Вместо SessionFactory должен использоваться **EntityManager**.
 
 <br/>
-<img src="https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/list.png" alt="User list"/>
+<img src="https://raw.githubusercontent.com/levgenix/SpringMvcHibernate/master/src/main/resources/list.png?sanitize=true&raw=true"/>
 <br/><br/>
-<img src="https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/form.png" alt="User form"/>
+<img src="https://raw.githubusercontent.com/levgenix/SpringMvcHibernate/master/src/main/resources/form.png?sanitize=true&raw=true"/>
