@@ -10,5 +10,6 @@
 4. Конфигурация Spring **через JavaConfig** и аннотации, по аналогии с предыдущими проектами. Без использования xml. Без Spring Boot.
 5. Внесите изменения в конфигурацию для работы с базой данных. Вместо SessionFactory должен использоваться **EntityManager**.
 
-![User list(https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/list.png)
-![User form(https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/form.png)
+![User list](https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/list.png)
+<br/><br/>
+![User form](https://github.com/levgenix/SpringMvcHibernate/tree/master/src/main/resources/form.png)
