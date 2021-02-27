@@ -3,6 +3,11 @@ package ru.itsinfo.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    public WebAppInit() {
+        super();
+    }
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[0];
@@ -17,4 +22,5 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
 }

@@ -1,5 +1,6 @@
 package ru.itsinfo.dao;
 
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import ru.itsinfo.model.User;
 
@@ -8,13 +9,14 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl /*extends HibernateDaoSupport */implements UserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<User> getAllUsers() {
+//        return (List<User>) getHibernateTemplate().loadAll(User.class);
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
