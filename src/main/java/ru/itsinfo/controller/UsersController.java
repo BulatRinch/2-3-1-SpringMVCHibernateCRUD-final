@@ -9,11 +9,11 @@ import ru.itsinfo.service.UserService;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
 
 	private final UserService userService;
 
-	public UserController(UserService userService) {
+	public UsersController(UserService userService) {
 		this.userService = userService;
 	}
 
@@ -24,14 +24,14 @@ public class UserController {
 		return "list";
 	}
 
-	@GetMapping(value = "/create")
-	public String addUserForm(Model model) {
-		model.addAttribute("user", new User());
+	@GetMapping(value = "/new")
+	public String addUserForm(@ModelAttribute("user") User user) {
 		return "form";
 	}
 
-	@GetMapping(value = "/edit", params = "id")
-	public String edidtUserForm(@RequestParam("id") long id, RedirectAttributes attributes, Model model) {
+	@GetMapping("/{id}/edit")
+	public String edidtUserForm(@PathVariable(value = "id", required = true) long id, Model model,
+								RedirectAttributes attributes) {
 		try {
 			model.addAttribute("user", userService.readUser(id));
 		} catch (NumberFormatException | NullPointerException e) {
@@ -49,16 +49,18 @@ public class UserController {
 			userService.updateUser(user);
 		}
 
-		attributes.addFlashAttribute("flashMessage", "User " + user.getFirstName() + " successfully created!");
+		attributes.addFlashAttribute("flashMessage",
+				"User " + user.getFirstName() + " successfully created!");
 		return "redirect:/users";
 	}
 
 	@GetMapping("/delete")
-	public String deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") String id,
+	public String deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") long id,
 								   RedirectAttributes attributes) {
 		try {
-			User user = userService.deleteUser(Long.parseUnsignedLong(id));
-			attributes.addFlashAttribute("flashMessage", "User " + user.getFirstName() + " successfully deleted!");
+			User user = userService.deleteUser(id);
+			attributes.addFlashAttribute("flashMessage",
+					"User " + user.getFirstName() + " successfully deleted!");
 		} catch (NumberFormatException | NullPointerException e) {
 			attributes.addFlashAttribute("flashMessage", "User are not exists!");
 		}

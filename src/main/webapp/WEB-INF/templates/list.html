@@ -18,7 +18,7 @@
 
 <div class="container pl-0">
     <div class="row pb-3 pt-3 mb-2 pl-0 ml-0">
-        <div class="col-12 pl-0"><a type="button" th:href="@{/users/create}" class="btn btn-secondary">Create new user</a></div>
+        <div class="col-12 pl-0"><a type="button" th:href="${(#mvc.url('UC#addUserForm')).build()}" class="btn btn-secondary">Create new user</a></div>
     </div>
 </div>
 
@@ -35,7 +35,7 @@
         <div class="col" th:text="${user.getLastName()}"/>
         <div class="col text-center" th:text="${user.getEmail()}"/>
         <div class="col text-center">
-            <a type="button" th:href="@{/users/edit(id=${user.getId()})}" class="btn btn-secondary" th:classappend="${rowStat.count % 2 == 0 ? 'bg-light text-dark' : 'bg-secondary text-white'}">Edit</a>
+            <a type="button" th:href="@{/users/{id}/edit(id=${user.getId()})}" class="btn btn-secondary" th:classappend="${rowStat.count % 2 == 0 ? 'bg-light text-dark' : 'bg-secondary text-white'}">Edit</a>
             <a type="button" th:href="@{/users/delete(id=${user.getId()})}" class="btn btn-secondary" th:classappend="${rowStat.count % 2 == 0 ? 'bg-light text-dark' : 'bg-secondary text-white'}">Delete</a>
         </div>
     </div>
