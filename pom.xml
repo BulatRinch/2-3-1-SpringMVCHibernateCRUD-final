@@ -20,13 +20,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>5.2.13.RELEASE</version>
-      <!--<exclusions>-->
-        <!-- Exclude Commons Logging in favor of SLF4j -->
-        <!--<exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>-->
     </dependency>
 
     <dependency>
@@ -42,6 +35,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.2.0.Final</version>
+    </dependency>
+
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.23</version>
@@ -52,12 +51,6 @@
       <artifactId>c3p0</artifactId>
       <version>0.9.5.5</version>
     </dependency>
-
-<!--    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-dbcp</artifactId>
-      <version>10.0.2</version>
-    </dependency>-->
 
     <dependency>
       <groupId>org.slf4j</groupId>

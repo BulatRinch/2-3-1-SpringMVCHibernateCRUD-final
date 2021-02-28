@@ -23,20 +23,23 @@
             <div class="col-md-6 mb-3">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" th:field="*{firstName}" th:value="*{getFirstName()}" placeholder="Enter user name" required>
+                <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="last_name">Last name</label>
-                <input type="text" class="form-control" id="last_name" th:field="*{lastName}" th:value="*{getLastName()}" placeholder="Enter last name" required>
+                <input type="text" class="form-control" id="last_name" th:field="*{lastName}" th:value="*{getLastName()}" placeholder="Enter last name">
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" th:field="*{email}" th:value="*{getEmail()}" placeholder="Enter email" required>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" th:field="*{password}" th:value="*{getPassword()}" placeholder="Enter password" required>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
             </div>
         </div>
 

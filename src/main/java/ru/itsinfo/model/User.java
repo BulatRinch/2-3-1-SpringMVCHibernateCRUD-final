@@ -1,6 +1,11 @@
 package ru.itsinfo.model;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -9,13 +14,18 @@ public class User {
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 to 30")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
+    @Email(message = "Email should be valid")
     private String email;
 
+    @NotEmpty(message = "Password should not be empty")
+    @Min(value = 4, message = "Password should be min 4 characters")
     private String password;
 
     public User() {
