@@ -11,7 +11,9 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 public class User {
 
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) long id;
+    private @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
@@ -25,7 +27,7 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Password should not be empty")
-    @Min(value = 4, message = "Password should be min 4 characters")
+    //@Min(value = 4, message = "Password should be min 4 characters")
     private String password;
 
     public User() {

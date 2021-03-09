@@ -17,7 +17,7 @@
 </div>
 
 <div class="container">
-    <form method="post" th:action="@{/users}" th:object="${user}">
+    <form th:method="POST" th:action="@{/users}" th:object="${user}">
         <input type="hidden" th:field="*{id}" th:value="*{getId()}">
         <div class="form-row">
             <div class="col-md-6 mb-3">

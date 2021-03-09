@@ -35,12 +35,14 @@ public class UsersController {
 	@GetMapping("/{id}/edit")
 	public String edidtUserForm(@PathVariable(value = "id", required = true) long id, Model model,
 								RedirectAttributes attributes) {
-		try {
-			model.addAttribute("user", userService.readUser(id));
-		} catch (NumberFormatException | NullPointerException e) {
+		User user = userService.readUser(id);
+
+		if (null == user) {
 			attributes.addFlashAttribute("flashMessage", "User are not exists!");
 			return "redirect:/users";
 		}
+
+		model.addAttribute("user", userService.readUser(id));
 		return "form";
 	}
 
@@ -51,12 +53,7 @@ public class UsersController {
 			return "form";
 		}
 
-		if (0 == user.getId()) {
-			userService.createUser(user);
-		} else {
-			userService.updateUser(user);
-		}
-
+		userService.createOrUpdateUser(user);
 		attributes.addFlashAttribute("flashMessage",
 				"User " + user.getFirstName() + " successfully created!");
 		return "redirect:/users";
@@ -65,13 +62,11 @@ public class UsersController {
 	@GetMapping("/delete")
 	public String deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") long id,
 								   RedirectAttributes attributes) {
-		try {
-			User user = userService.deleteUser(id);
-			attributes.addFlashAttribute("flashMessage",
-					"User " + user.getFirstName() + " successfully deleted!");
-		} catch (NumberFormatException | NullPointerException e) {
-			attributes.addFlashAttribute("flashMessage", "User are not exists!");
-		}
+		User user = userService.deleteUser(id);
+
+		attributes.addFlashAttribute("flashMessage", (null == user) ?
+				"User are not exists!" :
+				"User " + user.getFirstName() + " successfully deleted!");
 
 		return "redirect:/users";
 	}

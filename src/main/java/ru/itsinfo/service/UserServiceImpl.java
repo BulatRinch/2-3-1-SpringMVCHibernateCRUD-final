@@ -23,12 +23,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(User user) {
+    public void createOrUpdateUser(User user) {
+        if (0 == user.getId()) {
+            createUser(user);
+        } else {
+            updateUser(user);
+        }
+    }
+
+    private void createUser(User user) {
         userDAO.createUser(user);
     }
 
-    @Override
-    public void updateUser(User user) {
+    private void updateUser(User user) {
         userDAO.updateUser(user);
     }
 
@@ -39,6 +46,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User deleteUser(long id) {
-        return userDAO.deleteUser(id);
+        User user = null;
+        try {
+            user = userDAO.deleteUser(id);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

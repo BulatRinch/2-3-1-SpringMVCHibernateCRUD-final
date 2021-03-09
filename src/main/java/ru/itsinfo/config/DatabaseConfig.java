@@ -20,10 +20,10 @@ import java.beans.PropertyVetoException;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-public class PersistenceJPAConfig {
+public class DatabaseConfig {
     private final Environment env;
 
-    public PersistenceJPAConfig(Environment env) {
+    public DatabaseConfig(Environment env) {
         this.env = env;
     }
 
@@ -42,7 +42,7 @@ public class PersistenceJPAConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] {"ru.itsinfo.model"});
+        em.setPackagesToScan("ru.itsinfo.model");
         em.setJpaVendorAdapter(vendorAdapter);
 
         return em;

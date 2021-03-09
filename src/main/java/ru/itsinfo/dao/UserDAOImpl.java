@@ -1,6 +1,5 @@
 package ru.itsinfo.dao;
 
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import ru.itsinfo.model.User;
 
@@ -9,14 +8,13 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl /*extends HibernateDaoSupport */implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<User> getAllUsers() {
-//        return (List<User>) getHibernateTemplate().loadAll(User.class);
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
@@ -38,8 +36,11 @@ public class UserDAOImpl /*extends HibernateDaoSupport */implements UserDAO {
     }
 
     @Override
-    public User deleteUser(long id) {
+    public User deleteUser(long id) throws NullPointerException {
         User user = readUser(id);
+        if (null == user) {
+            throw new NullPointerException("User not found");
+        }
         entityManager.remove(user);
         entityManager.flush();
         return user;

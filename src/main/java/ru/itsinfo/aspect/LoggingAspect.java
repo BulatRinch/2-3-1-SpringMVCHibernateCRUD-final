@@ -14,9 +14,7 @@ public class LoggingAspect {
 
         System.out.println("Start method " + joinPoint.getSignature());
         long start = System.currentTimeMillis();
-
         Object targetMethodResult = joinPoint.proceed();
-
         System.out.println(joinPoint.getSignature().getName() + " executed in " + (System.currentTimeMillis() - start) + "ms");
 
         return targetMethodResult;
