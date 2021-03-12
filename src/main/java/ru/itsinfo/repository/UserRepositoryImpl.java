@@ -1,4 +1,4 @@
-package ru.itsinfo.dao;
+package ru.itsinfo.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.itsinfo.model.User;
@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class UserRepositoryImpl implements UserRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

@@ -1,10 +1,10 @@
-package ru.itsinfo.dao;
+package ru.itsinfo.repository;
 
 import ru.itsinfo.model.User;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface UserRepository {
 
     List<User> getAllUsers();
 

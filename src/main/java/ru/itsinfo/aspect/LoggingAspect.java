@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingAspect {
 
-    @Around("execution(* ru.itsinfo.dao.*.*(..))")
+    @Around("execution(* ru.itsinfo.repository.*.*(..))")
     public Object aroundAllRepositoryMethodsAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
 
         System.out.println("Start method " + joinPoint.getSignature());
