@@ -1,9 +1,9 @@
-package ru.itsinfo.service;
+package ru.app.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itsinfo.repository.UserRepository;
-import ru.itsinfo.model.User;
+import ru.app.repository.UserRepository;
+import ru.app.model.User;
 
 import java.util.List;
 
@@ -30,6 +30,9 @@ public class UserServiceImpl implements UserService {
             updateUser(user);
         }
     }
+
+    @Override
+    public void deleteTable() {userRepository.deleteTable(); }
 
     private void createUser(User user) {
         userRepository.createUser(user);

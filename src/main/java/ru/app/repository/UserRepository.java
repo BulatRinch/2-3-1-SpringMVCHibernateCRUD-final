@@ -1,6 +1,6 @@
-package ru.itsinfo.repository;
+package ru.app.repository;
 
-import ru.itsinfo.model.User;
+import ru.app.model.User;
 
 import java.util.List;
 
@@ -15,4 +15,6 @@ public interface UserRepository {
     User readUser(long id);
 
     User deleteUser(long id);
+
+    void deleteTable();
 }

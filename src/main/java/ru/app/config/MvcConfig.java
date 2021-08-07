@@ -1,4 +1,4 @@
-package ru.itsinfo.config;
+package ru.app.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"ru.itsinfo"})
+@ComponentScan(basePackages = {"ru.app"})
 public class MvcConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -23,12 +23,10 @@ public class MvcConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
-        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-    }
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {}
+
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -51,6 +49,7 @@ public class MvcConfig implements WebMvcConfigurer {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/templates/");
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML");
         templateResolver.setCacheable(false);

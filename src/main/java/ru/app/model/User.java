@@ -1,9 +1,8 @@
-package ru.itsinfo.model;
+package ru.app.model;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -16,29 +15,25 @@ public class User {
     long id;
 
     @Column(name = "name")
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 to 30")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2, max = 30, message = "Длина имени должна быть от 2 до 30 букв")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Email(message = "Email should be valid")
+    @Email(message = "Эл. почта должна быть корректной")
     private String email;
-
-    @NotEmpty(message = "Password should not be empty")
-    //@Min(value = 4, message = "Password should be min 4 characters")
-    private String password;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+
     }
 
     public long getId() {
@@ -73,17 +68,10 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public String toString() {
-        return String.format("User [id = %d; firstName = %s; lastName = %s; email = %s; password = %s]",
-                id, firstName, lastName, email, password);
+        return String.format("User [id = %d; firstName = %s; lastName = %s; email = %s]",
+                id, firstName, lastName, email);
     }
 }

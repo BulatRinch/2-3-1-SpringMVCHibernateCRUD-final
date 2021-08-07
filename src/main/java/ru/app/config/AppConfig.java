@@ -1,9 +1,8 @@
-package ru.itsinfo.config;
+package ru.app.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -18,7 +17,6 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@EnableAspectJAutoProxy
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 public class AppConfig {
@@ -44,7 +42,7 @@ public class AppConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean(); // HibernateExceptions, PersistenceExceptions... to DataAccessException
         em.setDataSource(dataSource());
-        em.setPackagesToScan("ru.itsinfo.model");
+        em.setPackagesToScan("ru.app.model");
         em.setJpaVendorAdapter(vendorAdapter);
         return em;
     }

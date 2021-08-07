@@ -1,6 +1,6 @@
-package ru.itsinfo.service;
+package ru.app.service;
 
-import ru.itsinfo.model.User;
+import ru.app.model.User;
 
 import java.util.List;
 
@@ -13,4 +13,6 @@ public interface UserService {
     User deleteUser(long parseUnsignedInt);
 
     void createOrUpdateUser(User user);
+
+    void deleteTable();
 }

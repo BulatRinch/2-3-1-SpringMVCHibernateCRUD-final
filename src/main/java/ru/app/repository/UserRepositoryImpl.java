@@ -1,7 +1,7 @@
-package ru.itsinfo.repository;
+package ru.app.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.itsinfo.model.User;
+import ru.app.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +15,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> getAllUsers() {
+
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
@@ -39,10 +40,15 @@ public class UserRepositoryImpl implements UserRepository {
     public User deleteUser(long id) throws NullPointerException {
         User user = readUser(id);
         if (null == user) {
-            throw new NullPointerException("User not found");
+            throw new NullPointerException("Пользователь не найден");
         }
         entityManager.remove(user);
         entityManager.flush();
         return user;
+    }
+
+    @Override
+    public void deleteTable() {
+        entityManager.createQuery("DELETE User").executeUpdate();
     }
 }

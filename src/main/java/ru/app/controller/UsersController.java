@@ -1,12 +1,12 @@
-package ru.itsinfo.controller;
+package ru.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.itsinfo.model.User;
-import ru.itsinfo.service.UserService;
+import ru.app.model.User;
+import ru.app.service.UserService;
 
 import javax.validation.Valid;
 
@@ -21,9 +21,8 @@ public class UsersController {
 	}
 
 	@GetMapping({"", "/", "list"})
-	public String showAllUsers(Model model, @ModelAttribute("flashMessage") String flashAttribute) {
+	public String showAllUsers(Model model) {
 		model.addAttribute("users", userService.getAllUsers());
-
 		return "list";
 	}
 
@@ -33,12 +32,11 @@ public class UsersController {
 	}
 
 	@GetMapping("/{id}/edit")
-	public String edidtUserForm(@PathVariable(value = "id", required = true) long id, Model model,
+	public String editUserForm(@PathVariable(value = "id", required = true) long id, Model model,
 								RedirectAttributes attributes) {
 		User user = userService.readUser(id);
 
 		if (null == user) {
-			attributes.addFlashAttribute("flashMessage", "User are not exists!");
 			return "redirect:/users";
 		}
 
@@ -54,8 +52,6 @@ public class UsersController {
 		}
 
 		userService.createOrUpdateUser(user);
-		attributes.addFlashAttribute("flashMessage",
-				"User " + user.getFirstName() + " successfully created!");
 		return "redirect:/users";
 	}
 
@@ -63,11 +59,6 @@ public class UsersController {
 	public String deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") long id,
 								   RedirectAttributes attributes) {
 		User user = userService.deleteUser(id);
-
-		attributes.addFlashAttribute("flashMessage", (null == user) ?
-				"User are not exists!" :
-				"User " + user.getFirstName() + " successfully deleted!");
-
 		return "redirect:/users";
 	}
 }
